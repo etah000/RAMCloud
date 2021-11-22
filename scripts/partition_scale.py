@@ -19,7 +19,7 @@
 Keeps partition size constant and scales the number of recovery masters.
 """
 
-from __future__ import division, print_function
+
 from common import *
 import config
 import metrics

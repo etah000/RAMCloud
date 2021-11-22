@@ -111,7 +111,7 @@ def markLine(line):
        the action that gets performed."""
     for word, action in markup:
         if word in line:
-            print(action(line))
+            print((action(line)))
             sys.stdout.flush()
             return
 
