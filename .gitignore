@@ -32,3 +32,4 @@ tags
 # CMake
 CMakeLists.txt
 cmake-*/
+.*
