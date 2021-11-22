@@ -14,7 +14,7 @@
 # ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 # OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-from __future__ import print_function
+
 from cluster import *
 from functools import *
 from optparse import OptionParser
@@ -63,7 +63,7 @@ if __name__ == '__main__':
     options, args = parser.parse_args()
     if options.transport not in locators['coordinator']:
         print('First argument must be a transport, one of:',
-              locators['coordinator'].keys())
+              list(locators['coordinator'].keys()))
         sys.exit(-1)
 
     print('Running', options.transport, 'with',

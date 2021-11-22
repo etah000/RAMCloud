@@ -15,7 +15,7 @@
 
 """Misc utilities and variables for Python scripts."""
 
-import commands
+import subprocess
 import contextlib
 import os
 import random
@@ -88,7 +88,7 @@ class Sandbox(object):
         checkHost(host)
         remote_scripts_path = config.hooks.get_remote_scripts_path()
         if bg:
-            sonce = ''.join([chr(random.choice(range(ord('a'), ord('z'))))
+            sonce = ''.join([chr(random.choice(list(range(ord('a'), ord('z')))))
                              for c in range(8)])
 
             server_process = is_server
@@ -238,8 +238,8 @@ def delayedInterrupts():
     quit = []
     def delay(sig, frame):
         if quit:
-            print ('Ctrl-C: Quitting during delayed interrupts section ' +
-                   'because user insisted')
+            print(('Ctrl-C: Quitting during delayed interrupts section ' +
+                   'because user insisted'))
             raise KeyboardInterrupt
         else:
             quit.append((sig, frame))
@@ -306,7 +306,7 @@ def getHosts():
                       i))
     """
     # Find servers locked by user via rcres
-    rcresOutput = commands.getoutput('rcres ls -l | grep "$(whoami)" | cut -c13-16 | grep "rc[0-9]" | cut -c3-4')
+    rcresOutput = subprocess.getoutput('rcres ls -l | grep "$(whoami)" | cut -c13-16 | grep "rc[0-9]" | cut -c3-4')
     rcresFailed = re.match(".*not found.*", rcresOutput)
 
     # If hosts overridden in localconfig.py, check that all servers are locked
@@ -362,7 +362,7 @@ def checkHost(host):
             return True
 
     # Server was not found in the valid list, let's check what the problem may be
-    rcresOutput = commands.getoutput('rcres ls')
+    rcresOutput = subprocess.getoutput('rcres ls')
     rcresFailed = re.match(".*not found.*", rcresOutput)
     if rcresFailed:
         raise Exception ("Attempted to use a host (%s) that is not present in the "

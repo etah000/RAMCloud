@@ -27,7 +27,7 @@ __all__ = ['getHosts', 'local_scripts_path', 'top_path', 'obj_path',
 hostname = socket.gethostname()
 
 def log(msg):
-    print '[%s] %s' % (hostname, msg)
+    print('[%s] %s' % (hostname, msg))
 
 
 # If run locally, connects to EMULAB_HOST and gets the manifest from there to

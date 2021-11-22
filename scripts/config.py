@@ -131,4 +131,4 @@ except ImportError:
 
 if __name__ == '__main__':
     import common
-    print('\n'.join([s[0] for s in common.getHosts()]))
+    print(('\n'.join([s[0] for s in common.getHosts()])))
