@@ -95,6 +95,10 @@ class ServerId {
     {
     }
 
+    ServerId(const RAMCloud::ServerId& other)
+        : serverId(other.serverId)
+    {
+    }
     /**
      * Obtain the ServerId's uint64_t serialised form.
      */
