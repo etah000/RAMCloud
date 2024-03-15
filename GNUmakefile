@@ -19,7 +19,7 @@ CCACHE ?= no
 LINKER ?= default
 SANITIZER ?= none
 VALGRIND ?= no
-ONLOAD_DIR ?= /usr/local/openonload-201405
+ONLOAD_DIR ?= /home/frank/opensource/openonload
 
 ## Create a separate build directory for each git branch and for each arch
 OBJSUFFIX := $(shell git symbolic-ref -q HEAD | \
@@ -137,7 +137,7 @@ endif
 INCLUDES := -I$(TOP)/src \
             -I$(TOP)/$(OBJDIR) \
             -I$(GTEST_DIR)/include \
-            -I/usr/local/openonload-201405/src/include \
+            -I$(ONLOAD_DIR)/src/include \
              $(NULL)
 ifeq ($(LOGCABIN),yes)
 INCLUDES := $(INCLUDES) -I$(LOGCABIN_DIR)/include
@@ -284,13 +284,13 @@ CFLAGS_BASE := $(COMFLAGS) -std=$(C_STANDARD) $(INCLUDES)
 CFLAGS_SILENT := $(CFLAGS_BASE)
 CFLAGS_NOWERROR := $(CFLAGS_BASE) $(CWARNS)
 # CFLAGS := $(CFLAGS_BASE) $(CWARNS)
-CFLAGS := $(CFLAGS_BASE) -Werror $(CWARNS)
+CFLAGS := $(CFLAGS_BASE)  $(CWARNS)
 
 CXXFLAGS_BASE := $(COMFLAGS) -std=$(CXX_STANDARD) $(INCLUDES)
 CXXFLAGS_SILENT := $(CXXFLAGS_BASE) $(EXTRACXXFLAGS)
 CXXFLAGS_NOWERROR := $(CXXFLAGS_BASE) $(CXXWARNS) $(EXTRACXXFLAGS)
 # CXXFLAGS := $(CXXFLAGS_BASE) $(CXXWARNS) $(EXTRACXXFLAGS) $(PERF)
-CXXFLAGS := $(CXXFLAGS_BASE) -Werror $(CXXWARNS) $(EXTRACXXFLAGS) $(PERF)
+CXXFLAGS := $(CXXFLAGS_BASE) $(CXXWARNS) $(EXTRACXXFLAGS) $(PERF)
 
 ifeq ($(COMPILER),intel)
 CXXFLAGS = $(CXXFLAGS_BASE) $(CXXWARNS)
